@@ -4,15 +4,12 @@ import useSWR from "swr"
 import { fetcher } from "@/lib/fetcher";
 import { swrConfig } from "@/lib/swr-config";
 import MetricCard from "@/components/dashboard/MetricCard";
-//import RevenueChart from "@/components/dashboard/RevenueChart";
 import LowInventoryAlert from "@/components/dashboard/LowInventoryAlert";
-import RecentActivity from "@/components/dashboard/RecentActivity";
 import ProductTable from "@/components/dashboard/ProductTable";
 
 export default function DashboardPage() {
     const { data, error, isLoading } = useSWR("/api/dashboard/metrics", fetcher, swrConfig)
     const { data: lowInventory } = useSWR("/api/dashboard/lowInventoryAlert", fetcher, swrConfig)
-    //const { data: revenueHistory } = useSWR("/api/dashboard/revenue-history", fetcher, swrConfig)
 
     if(isLoading) {
         return (
@@ -31,7 +28,6 @@ export default function DashboardPage() {
         ); 
     } 
    
-
     return (
         <div className="space-y-8">
             <h1 className="text-2xl font-bold text-blue-200">Dashboard Overview</h1>
@@ -46,17 +42,10 @@ export default function DashboardPage() {
 
             {/* Alert */}
             {lowInventory && <LowInventoryAlert items={lowInventory.products} />}
-           
-
-            {/* Activity *
-            <RecentActivity /> */}
 
             {/* Product Table */}
             <ProductTable /> 
             
         </div>
     )
-
-    
-
 }

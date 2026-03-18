@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Store } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const SLIDES = [
   {
@@ -48,13 +49,17 @@ export default function Hero() {
             {/* Dark Gradient Overlay for Text Readability */}
             <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/40 to-transparent z-10" />
             
-            <img
+            <Image 
               src={slide.image}
-              alt=""
-              className={`w-full h-full object-cover transition-transform duration-5000m ease-linear ${
+              alt={slide.title || "Hero background"} 
+              fill 
+              unoptimized
+              priority={index === 0}
+              className={`object-cover transition-transform duration-5000m ease-linear ${
                 index === current ? 'scale-110' : 'scale-100'
               }`}
             />
+            
           </div>
         ))}
       </div>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from  'next/image';
 
 export default function ProductCard({ product }: any) {
   const image_not_found =
@@ -9,25 +10,34 @@ export default function ProductCard({ product }: any) {
     : image_not_found;
   return (
     <Link href={`/market/product/id/${product.id}`}>
-      <div className="bg-black rounded-xl shadow hover:shadow-xl transition p-4 cursor-pointer h-100 overflow-hidden">
-
-        <img
+      <div className="bg-black rounded-xl shadow hover:shadow-xl transition p-4 cursor-pointer h-112.5 flex flex-col overflow-hidden group">
+  
+        {/* 1. Dedicated Image Container */}
+        <div className="relative w-full h-64 overflow-hidden rounded-lg mb-3">
+          <Image
             src={imageSrc}
-            className="w-full h-60 rounded-xl"
-        />
+            alt={product.name}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            unoptimized 
+          />
+        </div>
 
-        <div className="mt-3">
-          <h3 className="font-semibold text-lg">
+        {/* 2. Content Area */}
+        <div className="flex flex-col grow">
+          <h3 className="font-semibold text-lg text-white">
             {product.name}
           </h3>
 
-          <p className="text-gray-500 text-sm">
+          <p className="text-gray-400 text-sm line-clamp-2 mt-1">
             {product.description}
           </p>
 
-          <p className="font-bold text-xl mt-2">
-            ${product.price}
-          </p>
+          <div className="mt-auto pt-4">
+            <p className="font-bold text-xl text-white">
+              ${product.price}
+            </p>
+          </div>
         </div>
 
       </div>

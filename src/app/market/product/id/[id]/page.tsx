@@ -26,10 +26,13 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
   return (
     <div className="max-w-6xl mx-auto py-12 grid md:grid-cols-2 gap-12">
       <div>
-        <img
-            src={imageSrc}
-            alt={product.name}
-            className="w-full rounded-xl"
+        <Image
+          src={imageSrc}
+          alt={product.name}
+          width={500} 
+          height={500}
+          className="object-cover transition-transform duration-500 hover:scale-105 rounded-md"
+          unoptimized 
         />
       </div>
 
