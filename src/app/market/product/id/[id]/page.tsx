@@ -11,7 +11,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
 
   if (!product) {
     return (
-      <div className="text-center py-20 text-white">
+      <div className="text-center py-20 text-black">
         No product found
       </div>
     );

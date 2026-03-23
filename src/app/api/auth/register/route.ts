@@ -7,7 +7,11 @@ import { signToken } from "@/lib/jwt";
 const schema = z.object({
     email: z.string().email(),
     password: z.string().min(6),
-    role: z.enum(["CUSTOMER", "ADMIN"]).optional(),
+    role: z
+    .string()
+    .optional()
+    .transform((val) => val?.toUpperCase())
+    .pipe(z.enum(["CUSTOMER", "ADMIN"]).optional()),
 });
 
 export async function POST(req: Request) {
