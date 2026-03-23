@@ -16,7 +16,7 @@ const securityHeaders = [
   },
   {
     key: "Content-Security-Policy",
-    value: "default-src 'self'; img-src 'self' https://plus.unsplash.com https://images.unsplash.com https://buyfastgadgets.ng https://5.imimg.com data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",
+    value: "default-src 'self'; img-src 'self' https://plus.unsplash.com https://images.unsplash.com https://buyfastgadgets.ng https://sharewebdesign.com https://5.imimg.com data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",
   },
 ];
 

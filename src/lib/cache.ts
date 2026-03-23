@@ -1,5 +1,5 @@
 interface CacheValue {
-  [key: string]: unknown; // you can narrow this if you know the structure
+  [key: string]: unknown; 
 }
 
 const cache = new Map<string, CacheValue>();

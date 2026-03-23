@@ -21,7 +21,7 @@ export default function ProductGrid() {
   if (error) return <div className="p-6 text-red-600">Error loading products</div>
 
   return (
-    <div className="grid grid-cols-4 gap-6">
+    <div className="grid grid-cols-5 gap-3">
 
       {data.map((product: Product) => (
         <ProductCard
