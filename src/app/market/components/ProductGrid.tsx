@@ -5,6 +5,14 @@ import { fetcher } from "@/lib/fetcher"
 import ProductCard from "./ProductCard";
 import LoadingProduct from "../components/LoadingProducts"
 
+interface Product {
+  id: string | number;
+  name: string;
+  price: number;
+  image?: string; 
+  description?: string;
+}
+
 export default function ProductGrid() {
 
   const { data, error, isLoading } = useSWR("./api/products", fetcher)
@@ -15,7 +23,7 @@ export default function ProductGrid() {
   return (
     <div className="grid grid-cols-4 gap-6">
 
-      {data.map((product: any) => (
+      {data.map((product: Product) => (
         <ProductCard
           key={product.id}
           product={product}

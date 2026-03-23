@@ -11,7 +11,7 @@ export default function Navbar() {
           <Link href="#" className="hover:opacity-70">Pricing</Link>
           <Link href="#" className="flex items-center hover:opacity-70">Resources <ChevronDown size={14} className="ml-1" /></Link>
           <Link href="#" className="hover:opacity-70">Enterprise</Link>
-          <Link href="#" className="flex items-center hover:opacity-70">What's new <ChevronDown size={14} className="ml-1" /></Link>
+          <Link href="#" className="flex items-center hover:opacity-70">{"What's new"} <ChevronDown size={14} className="ml-1" /></Link>
         </div>
       </div>
       <div className="flex items-center space-x-6 text-sm font-medium">

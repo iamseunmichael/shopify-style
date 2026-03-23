@@ -1,7 +1,15 @@
 import Link from "next/link";
 import Image from  'next/image';
 
-export default function ProductCard({ product }: any) {
+interface Product {
+  id: string | number;
+  name: string;
+  price: number;
+  image?: string; // Optional, depending on your data
+  description?: string;
+}
+
+export default function ProductCard({ product }: { product: Product }) {
   const image_not_found =
     "https://sharewebdesign.com/wp-content/uploads/2014/12/woocommerce-google-product-feed-1024x536.png";
 

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { useAuth } from "@/lib/contexts/AuthContext"
 import Link from "next/link"
@@ -105,7 +105,7 @@ export default function LoginForm() {
                 </button>
 
                 <p className="text-center text-sm text-gray-600">
-                    Don't have an account? {' '}
+                    {"Don't have an account?"} {' '}
                     <Link href="/register" className="font-semibold text-black hover:underline"> Register </Link>
                 </p>
                 </form>

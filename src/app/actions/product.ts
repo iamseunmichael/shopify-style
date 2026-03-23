@@ -4,7 +4,6 @@ import { prisma } from "@/lib/prisma";
 import { productSchema } from "@/schemas/product.schema";
 import { logAudit } from "@/lib/audit-log";
 import { revalidatePath } from "next/cache";
-import { success } from "zod";
 
 export async function createProduct(formData: FormData) {
     try{

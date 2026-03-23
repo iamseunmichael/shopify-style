@@ -1,7 +1,6 @@
 "use client";
 
 import { useAuth } from "@/lib/contexts/AuthContext";
-import { useRouter } from "next/router";
 
 export default function Navbar() {
   const { user, logout } = useAuth();
