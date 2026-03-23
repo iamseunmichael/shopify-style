@@ -31,10 +31,10 @@ export async function createProduct(formData: FormData) {
             success: true,
             product
         }
-    }catch (error){
+    }catch (err){
         return{
             success: false,
-            message: "Invalid product data"
+            message: `Invalid product data ${err}`
         }
     }
 }

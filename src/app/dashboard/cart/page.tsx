@@ -2,14 +2,27 @@
 
 import { useEffect, useState } from "react";
 
-export default function CartPage() {
+interface CartItem {
+  id: string;
+  quantity: number;
+  price: number;
+  product: {
+    name: string;
+  };
+}
 
-  const [cart, setCart] = useState<any>(null);
+interface Cart {
+  items: CartItem[];
+  total: number;
+}
+
+export default function CartPage() {
+  const [cart, setCart] = useState<Cart | null>(null);
   const [loading, setLoading] = useState(true);
 
   const loadCart = async () => {
     const res = await fetch("/api/cart");
-    const data = await res.json();
+    const data: Cart = await res.json();
     setCart(data);
     setLoading(false);
   };
@@ -22,41 +35,30 @@ export default function CartPage() {
     await fetch("/api/cart/update", {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        itemId,
-        quantity: qty,
-      }),
+      body: JSON.stringify({ itemId, quantity: qty }),
     });
-
     loadCart();
   };
 
   const checkout = async () => {
-
-    const res = await fetch("/api/cart/checkout", {
-      method: "POST",
-    });
-
+    const res = await fetch("/api/cart/checkout", { method: "POST" });
     if (res.ok) {
       alert("Order placed!");
       loadCart();
     }
-
   };
 
   if (loading) return <p className="p-6 text-black">Loading cart...</p>;
-
-  if (!cart?.items?.length) {
-    return <div className="p-10 text-xl bg-black rounded-md">Cart is empty</div>;
-  }
+  if (!cart?.items?.length)
+    return (
+      <div className="p-10 text-xl bg-black rounded-md">Cart is empty</div>
+    );
 
   return (
-
     <div className="max-w-4xl mx-auto p-10 text-white bg-black rounded-md">
-
       <h1 className="text-3xl font-bold mb-8">Your Cart</h1>
 
-      {cart.items.map((item: any) => (
+      {cart.items.map((item) => (
         <div
           key={item.id}
           className="flex justify-between items-center mb-6 border-b pb-4"
@@ -73,9 +75,7 @@ export default function CartPage() {
             >
               -
             </button>
-
             <span>{item.quantity}</span>
-
             <button
               onClick={() => updateQty(item.id, item.quantity + 1)}
               className="px-3 py-1 bg-gray-700 rounded"
@@ -99,9 +99,6 @@ export default function CartPage() {
       >
         Checkout
       </button>
-
     </div>
-
   );
-
 }

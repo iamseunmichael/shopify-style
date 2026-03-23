@@ -2,6 +2,18 @@
 
 import { useMetrics } from "@/lib/hooks/useMetrics";
 
+interface Metrics {
+  users: number;
+  orders: number;
+  revenue: number;
+  growth: number;
+}
+
+interface MetricProps {
+  title: string;
+  value: string | number;
+}
+
 export default function DashboardMetrics() {
   const { metrics, isLoading } = useMetrics();
 
@@ -17,7 +29,7 @@ export default function DashboardMetrics() {
   );
 }
 
-function Metric({ title, value }: any) {
+function Metric({ title, value }: MetricProps) {
   return (
     <div className="bg-white p-4 rounded shadow">
       <h4 className="text-sm text-gray-500">{title}</h4>

@@ -43,6 +43,7 @@ export default function LoginForm() {
             router.push("/dashboard")
         } catch(err) {
             setError("Login failed")
+            console.log(err);
         }
         setLoading(false)
     }
