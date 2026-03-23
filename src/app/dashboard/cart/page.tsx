@@ -1,14 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 interface CartItem {
   id: string;
   quantity: number;
   price: number;
-  product: {
-    name: string;
-  };
+  product: { name: string };
 }
 
 interface Cart {
@@ -20,39 +18,46 @@ export default function CartPage() {
   const [cart, setCart] = useState<Cart | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const loadCart = async () => {
-    const res = await fetch("/api/cart");
-    const data: Cart = await res.json();
-    setCart(data);
-    setLoading(false);
-  };
+  const loadCart = useCallback(async () => {
+    try {
+      const res = await fetch("/api/cart");
+      const data: Cart = await res.json();
+      setCart(data);
+    } catch (err) {
+      console.error("Failed to load cart:", err);
+      setCart(null);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
     loadCart();
-  }, []);
+  }, [loadCart]);
 
-  const updateQty = async (itemId: string, qty: number) => {
-    await fetch("/api/cart/update", {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ itemId, quantity: qty }),
-    });
-    loadCart();
-  };
+  const updateQty = useCallback(
+    async (itemId: string, qty: number) => {
+      await fetch("/api/cart/update", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ itemId, quantity: qty }),
+      });
+      loadCart();
+    },
+    [loadCart]
+  );
 
-  const checkout = async () => {
+  const checkout = useCallback(async () => {
     const res = await fetch("/api/cart/checkout", { method: "POST" });
     if (res.ok) {
       alert("Order placed!");
       loadCart();
     }
-  };
+  }, [loadCart]);
 
   if (loading) return <p className="p-6 text-black">Loading cart...</p>;
   if (!cart?.items?.length)
-    return (
-      <div className="p-10 text-xl bg-black rounded-md">Cart is empty</div>
-    );
+    return <div className="p-10 text-xl bg-black rounded-md">Cart is empty</div>;
 
   return (
     <div className="max-w-4xl mx-auto p-10 text-white bg-black rounded-md">

@@ -1,14 +1,14 @@
 "use client";
 
 import { useMetrics } from "@/lib/hooks/useMetrics";
-
+/*
 interface Metrics {
   users: number;
   orders: number;
   revenue: number;
   growth: number;
 }
-
+ */
 interface MetricProps {
   title: string;
   value: string | number;
