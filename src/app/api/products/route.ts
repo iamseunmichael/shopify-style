@@ -19,8 +19,9 @@ export async function GET () {
 
         return NextResponse.json(products)
     }catch (error) {
+        console.error(error)
         return NextResponse.json(
-            {error: "Failed to fetch products"},
+            {error: "Failed to fetch products" },
             {status: 500}
         )
     }
@@ -38,6 +39,7 @@ export async function POST(req: NextRequest) {
 
         return NextResponse.json(product, {status: 201})
     }catch (error) {
+        console.error(error)
         return NextResponse.json(
             {error: "Invalid product data"},
             {status: 400}
