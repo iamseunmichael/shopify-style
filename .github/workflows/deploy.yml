@@ -37,9 +37,7 @@ jobs:
           npm install --no-save \
             "lightningcss-linux-x64-gnu@${LIGHTNINGCSS_VERSION}" \
             "@next/swc-linux-x64-gnu@${NEXT_VERSION}" \
-            "@next/swc-linux-x64-musl@${NEXT_VERSION}" \
-            "@tailwindcss/oxide-linux-x64-gnu@${OXIDE_VERSION}" \
-            "@tailwindcss/oxide-linux-x64-musl@${OXIDE_VERSION}"
+            "@tailwindcss/oxide-linux-x64-gnu@${OXIDE_VERSION}"
 
       - name: Run ESLint
         run: npm run lint
