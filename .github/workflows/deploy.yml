@@ -27,7 +27,13 @@ jobs:
           cache: "npm"
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --include=optional
+
+      - name: Ensure Linux native build binaries
+        run: |
+          LIGHTNINGCSS_VERSION=$(node -p "require('./node_modules/lightningcss/package.json').version")
+          NEXT_VERSION=$(node -p "require('./node_modules/next/package.json').version")
+          npm install --no-save "lightningcss-linux-x64-gnu@${LIGHTNINGCSS_VERSION}" "@next/swc-linux-x64-gnu@${NEXT_VERSION}"
 
       - name: Run ESLint
         run: npm run lint
