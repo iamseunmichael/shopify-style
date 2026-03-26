@@ -12,17 +12,17 @@ export default function MonitoringPage() {
 
   const [metrics, setMetrics] = useState<MonitoringMetrics | null>(null)
 
-  async function fetchMetrics() {
-    const res = await fetch("/api/monitoring")
-    const data = await res.json()
-    setMetrics(data)
-  }
-
   useEffect(() => {
 
-    fetchMetrics()
+    async function loadMetrics() {
+      const res = await fetch("/api/monitoring")
+      const data: MonitoringMetrics = await res.json()
+      setMetrics(data)
+    }
 
-    const interval = setInterval(fetchMetrics, 3000)
+    loadMetrics()
+
+    const interval = setInterval(loadMetrics, 3000)
 
     return () => clearInterval(interval)
 
@@ -33,7 +33,7 @@ export default function MonitoringPage() {
   return (
     <div className="p-10 text-black">
 
-      <h1 className="text-2xl font-bold text-black">
+      <h1 className="text-2xl font-bold">
         Enterprise Monitoring
       </h1>
 
