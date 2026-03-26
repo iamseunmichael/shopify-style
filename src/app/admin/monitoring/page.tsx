@@ -2,9 +2,15 @@
 
 import { useEffect, useState } from "react"
 
+type MonitoringMetrics = {
+  totalRequests: number
+  totalErrors: number
+  avgLatency: number
+}
+
 export default function MonitoringPage() {
 
-  const [metrics, setMetrics] = useState<any>(null)
+  const [metrics, setMetrics] = useState<MonitoringMetrics | null>(null)
 
   async function fetchMetrics() {
     const res = await fetch("/api/monitoring")

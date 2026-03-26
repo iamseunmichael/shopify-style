@@ -1,6 +1,7 @@
 'use client';
 
 import { AlertCircle, RefreshCcw, Home } from 'lucide-react';
+import Link from "next/link";
 
 export default function Error({
   error,
@@ -10,7 +11,7 @@ export default function Error({
   reset: () => void;
 }) {
   return (
-    <div className="flex min-h-[400px] w-full flex-col items-center justify-center p-10 text-center">
+    <div className="flex min-h-400px w-full flex-col items-center justify-center p-10 text-center">
       <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-red-50 text-red-600">
         <AlertCircle size={40} />
       </div>
@@ -20,7 +21,7 @@ export default function Error({
       </h1>
       
       <p className="mb-8 max-w-md text-slate-500">
-        An unexpected error occurred while loading this page. Our team has been notified and we're looking into it.
+        {"An unexpected error occurred while loading this page. Our team has been notified and we're looking into it."}
       </p>
 
       <div className="flex flex-col gap-3 sm:flex-row">
@@ -32,13 +33,13 @@ export default function Error({
           Try again
         </button>
 
-        <a
+        <Link
           href="/"
           className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition-all hover:bg-slate-50 active:scale-95"
         >
           <Home size={16} />
           Return home
-        </a>
+        </Link>
       </div>
 
       {error.digest && (
