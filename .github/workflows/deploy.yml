@@ -1,5 +1,4 @@
 name: Enterprise CI/CD Pipeline
-
 on:
   push:
     branches:
@@ -9,26 +8,19 @@ on:
     branches:
       - main
       - develop
-
 jobs:
   build-and-test:
-
     runs-on: ubuntu-latest
-
     steps:
-
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: "npm"
-
       - name: Install dependencies
         run: npm install --include=optional
-
       - name: Ensure Linux native build binaries
         run: |
           LIGHTNINGCSS_VERSION=$(node -p "require('./node_modules/lightningcss/package.json').version")
@@ -38,19 +30,14 @@ jobs:
             "lightningcss-linux-x64-gnu@${LIGHTNINGCSS_VERSION}" \
             "@next/swc-linux-x64-gnu@${NEXT_VERSION}" \
             "@tailwindcss/oxide-linux-x64-gnu@${OXIDE_VERSION}"
-
       - name: Run ESLint
         run: npm run lint
-
       - name: Run security audit
         run: npm audit --audit-level=critical
-
       - name: Run tests
         run: npm run test --if-present
-
       - name: Build Next.js project
         run: npm run build
-
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
