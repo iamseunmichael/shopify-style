@@ -32,7 +32,7 @@ export default function RegisterForm(){
         "Content-Type":"application/json"
       },
       credentials: "include",
-      body:JSON.stringify({email,password})
+      body:JSON.stringify({email,password,role})
     })
 
     const data = await res.json()
@@ -45,7 +45,7 @@ export default function RegisterForm(){
     setSuccess("Account created successfully! Redirecting...")
 
     setLoading(false)
-    router.push("/dashboard")
+    router.push("/login")
   }
 
   return(
@@ -99,14 +99,15 @@ export default function RegisterForm(){
                     />
                 </div>
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Role</label>
-                    <input
-                        type="role"
-                        placeholder="CUSTOMER"
-                        className="w-full black px-4 py-3 text-black rounded-lg border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent transition duration-200 outline-none placeholder-gray"
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Account Type</label>
+                    <select
+                        className="w-full px-4 py-3 text-black rounded-lg border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent transition duration-200 outline-none"
                         value={role}
                         onChange={(e) => setRole(e.target.value)}
-                    />
+                        >
+                        <option value="CUSTOMER">Customer</option>
+                        <option value="PRODUCER">Producer</option>
+                    </select>
                 </div>
             </div>
 

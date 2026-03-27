@@ -61,6 +61,7 @@ model ProductImage {
 enum Role {
   ADMIN
   CUSTOMER
+  PRODUCER
 }
 
 enum OrderStatus {

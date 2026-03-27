@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Store } from 'lucide-react';
+import { Store, House } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -77,8 +77,13 @@ export default function Hero() {
         </p>
         
         <div className="flex flex-wrap gap-4">
-            <Link href="/login" className="bg-white text-black px-10 py-5 rounded-full font-bold text-lg hover:scale-105 transition-transform active:scale-95">Log in</Link>
           
+            <button className="flex items-center space-x-3 bg-white/10 backdrop-blur-md border border-white/20 px-8 py-5 rounded-full font-bold text-lg hover:bg-white/20 transition-colors group">
+              <span className="bg-gray-200 rounded-full p-1.5 group-hover:scale-110 transition-transform">
+                <House size={18} fill="white" className="text-black" />
+              </span>
+              <Link href="/dashboard">Dashboard</Link>
+            </button>
           
           <button className="flex items-center space-x-3 bg-white/10 backdrop-blur-md border border-white/20 px-8 py-5 rounded-full font-bold text-lg hover:bg-white/20 transition-colors group">
             <span className="bg-gray-200 rounded-full p-1.5 group-hover:scale-110 transition-transform">

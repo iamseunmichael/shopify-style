@@ -24,8 +24,8 @@ export default function Sidebar() {
     <aside className="w-64 bg-zinc-950 text-white min-h-screen flex flex-col shadow-2xl">
       {/* Branding */}
       <div className="w-64 h-16 flex items-center gap-3 mb-10 px-2 bg-gray-700">
-        {user?.role === "ADMIN" && (
-          <h2 className="text-xl font-bold tracking-tight">Admin</h2>
+        {user?.role === "PRODUCER" && (
+          <h2 className="text-xl font-bold tracking-tight">Producer</h2>
         )}
         <h2 className="text-xl font-bold tracking-tight">Platform</h2>
       </div>
@@ -37,7 +37,7 @@ export default function Sidebar() {
         <Link href="/dashboard/cart" className={getLinkClassName("/dashboard/cart")}>My Carts</Link>
         <Link href="/dashboard/order" className={getLinkClassName("/dashboard/order")}>My Orders</Link>
 
-        {user?.role === "ADMIN" && (
+        {user?.role === "PRODUCER" && (
           <>
             <Link href="/dashboard/products" className={getLinkClassName("/dashboard/products")}>Products</Link> 
             <Link href="/dashboard/analytics" className={getLinkClassName("/dashboard/analytics")}>Analytics</Link>
