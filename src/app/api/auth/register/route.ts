@@ -9,7 +9,11 @@ const schema = z.object({
   email: z.string().email(),
   password: z.string().min(6),
   // Updated Zod logic: handle string input and ensure it maps to our Role enum
-  role: z.enum(["CUSTOMER", "PRODUCER", "ADMIN"]).default("CUSTOMER"),
+  role: z
+    .string()
+    .transform((val) => val.toUpperCase())
+    .pipe(z.enum(["CUSTOMER", "PRODUCER"]))
+    .default("CUSTOMER"),
 });
 
 export async function POST(req: Request) {

@@ -3,7 +3,7 @@ import { NextRequest } from "next/server";
 
 export interface AuthPayload {
     userId: string
-    role: "ADMIN" | "CUSTOMER"
+    role: "ADMIN" | "CUSTOMER" | "PRODUCER"
 }
 
 export function verifyAuth(req: NextRequest): AuthPayload | null {

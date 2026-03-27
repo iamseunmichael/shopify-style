@@ -40,7 +40,12 @@ export default function LoginForm() {
                 return;
             }
             await login();
-            router.push("/dashboard")
+            if(data.user.role == "ADMIN"){
+                router.push("/admin/dashboard");
+            }else{
+                router.push("/dashboard")
+            }
+            
         } catch(err) {
             setError("Login failed")
             console.log(err);

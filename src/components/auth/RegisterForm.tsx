@@ -10,7 +10,7 @@ export default function RegisterForm(){
 
   const [email,setEmail] = useState("")
   const [password,setPassword] = useState("")
-  const [role, setRole] = useState("")
+  const [role, setRole] = useState("CUSTOMER")
   const [loading,setLoading] = useState(false)
   const [error,setError] = useState("")
   const [success, setSuccess] = useState("")
@@ -105,8 +105,8 @@ export default function RegisterForm(){
                         value={role}
                         onChange={(e) => setRole(e.target.value)}
                         >
-                        <option value="CUSTOMER">Customer</option>
-                        <option value="PRODUCER">Producer</option>
+                        <option value="CUSTOMER">CUSTOMER</option>
+                        <option value="PRODUCER">PRODUCER</option>
                     </select>
                 </div>
             </div>

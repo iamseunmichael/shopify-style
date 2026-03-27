@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Store, House } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useAuth } from "@/lib/contexts/AuthContext";
 
 const SLIDES = [
   {
@@ -25,6 +26,7 @@ const SLIDES = [
 
 export default function Hero() {
   const [current, setCurrent] = useState(0);
+  const { user } = useAuth();
 
   // Auto-scroll logic: changes slide every 5 seconds
   useEffect(() => {
@@ -82,7 +84,9 @@ export default function Hero() {
               <span className="bg-gray-200 rounded-full p-1.5 group-hover:scale-110 transition-transform">
                 <House size={18} fill="white" className="text-black" />
               </span>
-              <Link href="/dashboard">Dashboard</Link>
+              <Link href={user?.role === "ADMIN" ? "/admin/dashboard" : "/dashboard"}>
+                Dashboard
+              </Link>
             </button>
           
           <button className="flex items-center space-x-3 bg-white/10 backdrop-blur-md border border-white/20 px-8 py-5 rounded-full font-bold text-lg hover:bg-white/20 transition-colors group">
