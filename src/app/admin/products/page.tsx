@@ -7,7 +7,7 @@ import { fetcher } from "@/lib/fetcher";
 import { swrConfig } from "@/lib/swr-config";
 
 export default function Page() {
-  const { data, error, isLoading } = useSWR(
+  const { error, isLoading } = useSWR(
     "/api/auth/admin_auth",
     fetcher,
     swrConfig
